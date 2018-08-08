@@ -1,7 +1,7 @@
 {
   "name": "morewallet.js",
   "version": "1.0.0",
-  "description": "Describe morewallet.js here",
+  "description": "morewallet js sdk for dapp",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -16,8 +16,7 @@
     "test:coverage": "nwb test --coverage",
     "test:watch": "nwb test --server"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "nwb": "0.21.x"
   },
