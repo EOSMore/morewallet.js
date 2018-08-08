@@ -127,36 +127,20 @@ class Client {
     });
   }
 
-  pushAction(contract, action, data) {
+  pushAction(contract, action, authorization, data) {
     return new Promise((resolve, reject) => {
-      const callbackName = this.genCallbackName("push_action");
-      const errorName = this.genErrorName("push_action");
-      window[callbackName] = (res) => {
-        resolve(res);
-      };
-      window[errorName] = (error) => {
-        reject(error);
-      };
-
       if (!this.account) {
         reject("请选择执行账号");
       }
 
-      const params = {
-        source: this.source,
-        account: this.account,
-        contract,
-        action,
+      const actions = [{
+        account: contract,
+        name: action,
+        authorization,
         data
-      };
+      }];
 
-      if (window.MoreJSBridge) {
-        window.MoreJSBridge.pushAction(JSON.stringify(params));
-      } else if (window.webkit) {
-        window.webkit.messageHandlers.pushAction.postMessage(JSON.stringify(params));
-      } else {
-        reject("请在MORE WALLET中打开此DAPP");
-      }
+      this.pushActions(actions).then(resolve).catch(reject);
     });
   }
 
@@ -173,7 +157,12 @@ class Client {
         memo
       };
 
-      this.pushAction(contract, "transfer", data).then(res => resolve(res)).catch(error => reject(error));
+      const authorization = [{
+        actor: this.account,
+        permission: "active"
+      }];
+
+      this.pushAction(contract, "transfer", authorization, data).then(res => resolve(res)).catch(error => reject(error));
     });
   }
 

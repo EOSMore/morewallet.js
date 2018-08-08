@@ -31,7 +31,11 @@ const buyramData = {
   receiver: "demouser1111",
   quantity: "10 EOS"
 };
-client.pushAction("eosio", "buyram", buyramData);
+const authorization = [{
+  actor: "demouser1111",
+  permission: "active"
+}];
+client.pushAction("eosio", "buyram", authorization, buyramData);
 
 //批量提交action
 const actions = [{
@@ -106,7 +110,7 @@ action - action名称
 
 res - Boolean
 
-### client.pushAction(contract, action, data)
+### client.pushAction(contract, action, authorization, data)
 
 > 提交action
 
@@ -114,6 +118,7 @@ res - Boolean
 
 contract - 合约账号
 action - action名称
+authorization - 权限数组
 data - 执行参数
 
 ### client.pushActions(actions)
