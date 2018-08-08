@@ -29,7 +29,7 @@ client.checkAction("eosio.token", "transfer");
 const buyramData = {
   payer: "demouser1111",
   receiver: "demouser1111",
-  quantity: "10 EOS"
+  quantity: "10.0000 EOS"
 };
 const authorization = [{
   actor: "demouser1111",
@@ -48,7 +48,7 @@ const actions = [{
   data: {
     payer: "demouser1111",
     receiver: "demouser1111",
-    quantity: "10 EOS"
+    quantity: "10.0000 EOS"
   }
 }, {
   account: "eosio",
@@ -60,15 +60,15 @@ const actions = [{
   data: {
     from: "demouser1111",
     receiver: "demouser1111",
-    stake_net_quantity: "10 EOS",
-    stake_cpu_quantity: "5 EOS",
+    stake_net_quantity: "10.0000 EOS",
+    stake_cpu_quantity: "5.0000 EOS",
     transfer: false
   }
 }];
 client.pushActions(actions);
 
 //转账
-client.transfer("eosio.token", "demouser1111", "100 EOS", "hi");
+client.transfer("eosio.token", "demouser1111", "100.0000 EOS", "hi");
 ```
 
 ## 接口
