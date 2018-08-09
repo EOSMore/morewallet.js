@@ -69,6 +69,17 @@ client.pushActions(actions);
 
 //转账
 client.transfer("eosio.token", "demouser1111", "100.0000 EOS", "hi");
+
+//获取余额
+client.getCurrencyBalance("eosio.token", "EOS");
+
+//数据表信息
+client.getTableRows({
+  code: "eosio",
+  scope: "eosio",
+  table: "global"
+});
+
 ```
 
 ## 接口
@@ -155,3 +166,11 @@ contract - 代币合约
 to - 接收者
 quantity - 转账金额
 memo - 转账memo
+
+### client.getTableRows(params)
+
+> 获取数据表信息
+
+**参数**
+
+params - 查询信息，参考`/chain/get_table_rows`接口

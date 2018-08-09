@@ -62,6 +62,31 @@ class Client {
     });
   }
 
+  getTableRows(params) {
+    return new Promise((resolve, reject) => {
+      const callbackName = this.genCallbackName("get_table_rows");
+      const errorName = this.genErrorName("get_table_rows");
+      window[callbackName] = (data) => {
+        try {
+          data = JSON.parse(data);
+          resolve(data);
+        } catch (e) {
+          reject(e);
+        }
+      };
+      window[errorName] = (error) => {
+        reject(error);
+      };
+      if (window.MoreJSBridge) {
+        window.MoreJSBridge.getTableRows(JSON.stringify(params));
+      } else if (window.webkit) {
+        window.webkit.messageHandlers.getTableRows.postMessage(JSON.stringify(params));
+      } else {
+        reject("请在MORE WALLET中打开此DAPP");
+      }
+    });
+  }
+
   openInApp() {
     return new Promise((resolve, reject) => {
       const callbackName = this.genCallbackName("open_in_app");
