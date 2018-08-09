@@ -16,7 +16,7 @@ client.getAppVersion().then(version => {
   console.error(error);
 });
 
-//当前账号
+//当前账号信息
 client.getAccount();
 
 //是否在钱包APP中打开
@@ -48,7 +48,7 @@ const actions = [{
   data: {
     payer: "demouser1111",
     receiver: "demouser1111",
-    quantity: "10.0000 EOS"
+    quant: "10.0000 EOS"
   }
 }, {
   account: "eosio",
@@ -75,11 +75,18 @@ client.transfer("eosio.token", "demouser1111", "100.0000 EOS", "hi");
 
 ### client.getAccount()
 
-> 获取当前账号
+> 获取当前账号信息
 
 **返回值**
 
-account - String
+account_name - String 账户名
+core_liquid_balance - String eos余额
+ram_quota - Integer 内存
+net_weight - Integer 带宽
+cpu_weight - Integer CPU
+permissions - Array 权限信息
+total_resources - Object 资源信息
+voter_info - Object 投票信息
 
 ### client.openInApp()
 
@@ -109,6 +116,15 @@ action - action名称
 **返回值**
 
 res - Boolean
+
+### client.getCurrencyBalance(contract, symbol)
+
+> 获取指定代币余额
+
+**参数**
+
+contract - 合约账号
+symbol - symbol名称
 
 ### client.pushAction(contract, action, authorization, data)
 

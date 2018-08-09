@@ -17,8 +17,13 @@ class Client {
       const callbackName = this.genCallbackName("get_account");
       const errorName = this.genErrorName("get_account");
       window[callbackName] = (account) => {
-        this.account = account;
-        resolve(account);
+        try {
+          account = JSON.parse(account);
+          this.account = account.account_name;
+          resolve(account);
+        } catch (e) {
+          reject(e);
+        }
       };
       window[errorName] = (error) => {
         reject(error);
@@ -27,6 +32,30 @@ class Client {
         window.MoreJSBridge.getAccount();
       } else if (window.webkit) {
         window.webkit.messageHandlers.getAccount.postMessage(JSON.stringify({}));
+      } else {
+        reject("请在MORE WALLET中打开此DAPP");
+      }
+    });
+  }
+
+  getCurrencyBalance(contract, symbol) {
+    return new Promise((resolve, reject) => {
+      const callbackName = this.genCallbackName("get_currency_balance");
+      const errorName = this.genErrorName("get_currency_balance");
+      window[callbackName] = (balance) => {
+        resolve(balance);
+      };
+      window[errorName] = (error) => {
+        reject(error);
+      };
+      const params = {
+        contract,
+        symbol
+      };
+      if (window.MoreJSBridge) {
+        window.MoreJSBridge.getCurrencyBalance(JSON.stringify(params));
+      } else if (window.webkit) {
+        window.webkit.messageHandlers.getCurrencyBalance.postMessage(JSON.stringify(params));
       } else {
         reject("请在MORE WALLET中打开此DAPP");
       }
@@ -109,6 +138,7 @@ class Client {
 
       if (!this.account) {
         reject("请选择执行账号");
+        return
       }
 
       const params = {
@@ -131,6 +161,7 @@ class Client {
     return new Promise((resolve, reject) => {
       if (!this.account) {
         reject("请选择执行账号");
+        return
       }
 
       const actions = [{
@@ -148,6 +179,7 @@ class Client {
     return new Promise((resolve, reject) => {
       if (!this.account) {
         reject("请选择执行账号");
+        return
       }
 
       const data = {

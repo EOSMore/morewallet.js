@@ -20,8 +20,8 @@
   "devDependencies": {
     "nwb": "0.21.x"
   },
-  "author": "",
-  "homepage": "",
+  "author": "more.top",
+  "homepage": "https://more.top",
   "license": "MIT",
-  "repository": ""
+  "repository": "morewallet.js"
 }
