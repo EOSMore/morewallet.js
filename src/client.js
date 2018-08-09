@@ -94,7 +94,7 @@ class Client {
         resolve(true);
       };
       if (window.MoreJSBridge) {
-        window.MoreJSBridge.getAppVersion();
+        window.MoreJSBridge.openInApp();
       } else if (window.webkit) {
         window.webkit.messageHandlers.openInApp.postMessage(JSON.stringify({}));
       } else {
