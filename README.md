@@ -3,6 +3,7 @@
 > more wallet dapp js sdk
 
 ## 示例
+### ES6
 ```javascript
 import mw from 'morewallet.js';
 
@@ -80,6 +81,24 @@ client.getTableRows({
   table: "global"
 });
 
+```
+
+### UMD
+
+- 页面引入script：
+
+```html
+<script src="https://cdn.more.top/morewallet/1.0.0/morewallet.js.min.js"></script>
+```
+
+- 使用
+
+```html
+<script>
+  var dappName = "dappdemo";
+  var client = MOREWALLET.getClient(dappName);
+  client.getCurrencyBalance("eosio.token", "EOS");
+</script>
 ```
 
 ## 接口
