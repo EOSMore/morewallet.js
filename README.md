@@ -1,5 +1,7 @@
 # morewallet.js
 
+![https://www.npmjs.com/package/morewallet.js](https://img.shields.io/npm/v/morewallet.js.svg) ![](https://img.shields.io/badge/language-javascript-red.svg)
+
 > more wallet dapp js sdk
 
 ## 示例
