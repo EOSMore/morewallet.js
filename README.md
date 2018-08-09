@@ -7,7 +7,7 @@
 import mw from 'morewallet.js';
 
 const dappName = "dappdemo";
-const client = mw.getClient(dappname);
+const client = mw.getClient(dappName);
 
 //获取APP版本号
 client.getAppVersion().then(version => {
@@ -90,14 +90,14 @@ client.getTableRows({
 
 **返回值**
 
-account_name - String 账户名
-core_liquid_balance - String eos余额
-ram_quota - Integer 内存
-net_weight - Integer 带宽
-cpu_weight - Integer CPU
-permissions - Array 权限信息
-total_resources - Object 资源信息
-voter_info - Object 投票信息
+- account_name - String 账户名
+- core_liquid_balance - String eos余额
+- ram_quota - Integer 内存
+- net_weight - Integer 带宽
+- cpu_weight - Integer CPU
+- permissions - Array 权限信息
+- total_resources - Object 资源信息
+- voter_info - Object 投票信息
 
 ### client.openInApp()
 
@@ -105,7 +105,7 @@ voter_info - Object 投票信息
 
 **返回值**
 
-res - Boolean
+- res - Boolean
 
 ### client.getAppVersion()
 
@@ -113,7 +113,7 @@ res - Boolean
 
 **返回值**
 
-version - String
+- version - String
 
 ### client.checkAction(contract, action)
 
@@ -121,12 +121,12 @@ version - String
 
 **参数**
 
-contract - 合约账号
-action - action名称
+- contract - 合约账号
+- action - action名称
 
 **返回值**
 
-res - Boolean
+- res - Boolean
 
 ### client.getCurrencyBalance(contract, symbol)
 
@@ -134,8 +134,8 @@ res - Boolean
 
 **参数**
 
-contract - 合约账号
-symbol - symbol名称
+- contract - 合约账号
+- symbol - symbol名称
 
 ### client.pushAction(contract, action, authorization, data)
 
@@ -143,10 +143,10 @@ symbol - symbol名称
 
 **参数**
 
-contract - 合约账号
-action - action名称
-authorization - 权限数组
-data - 执行参数
+- contract - 合约账号
+- action - action名称
+- authorization - 权限数组
+- data - 执行参数
 
 ### client.pushActions(actions)
 
@@ -154,7 +154,7 @@ data - 执行参数
 
 **参数**
 
-actions - action数组
+- actions - action数组
 
 ### client.transfer(contract, to, quantity, memo)
 
@@ -162,10 +162,10 @@ actions - action数组
 
 **参数**
 
-contract - 代币合约
-to - 接收者
-quantity - 转账金额
-memo - 转账memo
+- contract - 代币合约
+- to - 接收者
+- quantity - 转账金额
+- memo - 转账memo
 
 ### client.getTableRows(params)
 
@@ -173,4 +173,4 @@ memo - 转账memo
 
 **参数**
 
-params - 查询信息，参考`/chain/get_table_rows`接口
+- params - 查询信息，参考`/chain/get_table_rows`接口
