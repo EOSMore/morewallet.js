@@ -12,7 +12,7 @@ class Client {
     return `mw_${method}_fail`;
   }
 
-  getAccount() {
+  getAccount(account = '') {
     return new Promise((resolve, reject) => {
       const callbackName = this.genCallbackName("get_account");
       const errorName = this.genErrorName("get_account");
@@ -29,9 +29,9 @@ class Client {
         reject(error);
       };
       if (window.MoreJSBridge) {
-        window.MoreJSBridge.getAccount();
+        window.MoreJSBridge.getAccount(account);
       } else if (window.webkit) {
-        window.webkit.messageHandlers.getAccount.postMessage(JSON.stringify({}));
+        window.webkit.messageHandlers.getAccount.postMessage(JSON.stringify({ account }));
       } else {
         reject("请在MORE WALLET中打开此DAPP");
       }
