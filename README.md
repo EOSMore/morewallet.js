@@ -105,9 +105,13 @@ client.getTableRows({
 
 ## 接口
 
-### client.getAccount()
+### client.getAccount(account = "")
 
-> 获取当前账号信息
+**参数**
+
+- account - 要查询的账号，不传表示查询当前账号信息
+
+> 查询账号信息
 
 **返回值**
 
