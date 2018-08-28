@@ -38,6 +38,26 @@ class Client {
     });
   }
 
+  signText(text = '') {
+    return new Promise((resolve, reject) => {
+      const callbackName = this.genCallbackName("sign_text");
+      const errorName = this.genErrorName("sign_text");
+      window[callbackName] = signedText => {
+        resolve(signedText);
+      };
+      window[errorName] = (error) => {
+        reject(error);
+      };
+      if (window.MoreJSBridge) {
+        window.MoreJSBridge.signText(text);
+      } else if (window.webkit) {
+        window.webkit.messageHandlers.signText.postMessage(JSON.stringify({ text }));
+      } else {
+        reject("请在MORE WALLET中打开此DAPP");
+      }
+    });
+  }
+
   getCurrencyBalance(contract, symbol) {
     return new Promise((resolve, reject) => {
       const callbackName = this.genCallbackName("get_currency_balance");
