@@ -68,6 +68,7 @@ const actions = [{
     transfer: false
   }
 }];
+
 client.pushActions(actions);
 
 //转账
@@ -82,6 +83,9 @@ client.getTableRows({
   scope: "eosio",
   table: "global"
 });
+
+//使用私钥加密文本
+client.signText("text");
 
 ```
 
@@ -199,3 +203,15 @@ client.getTableRows({
 **参数**
 
 - params - 查询信息，参考`/chain/get_table_rows`接口
+
+### client.signText(text)
+
+> 使用私钥加密文本
+
+**参数**
+
+- text - 要加密的文本
+
+**返回值**
+
+- signedText - String
