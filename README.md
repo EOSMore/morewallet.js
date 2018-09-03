@@ -5,6 +5,9 @@
 > more wallet dapp js sdk
 
 ## 示例
+
+[完整示例见此](https://github.com/EOSMore/morewalletjsdemo)
+
 ### ES6
 ```javascript
 import mw from 'morewallet.js';
@@ -23,7 +26,7 @@ client.getAppVersion().then(version => {
 client.getAccount();
 
 //是否在钱包APP中打开
-client.checkInApp();
+client.openInApp();
 
 //检查是否可执行某个action
 client.checkAction("eosio.token", "transfer");
@@ -101,7 +104,7 @@ client.signText("text");
 
 ```html
 <script>
-  var dappName = "dappdemo";
+  var dappName = "dappdemo"; //dapp 名称，应是在钱包APP填写的name字段
   var client = MOREWALLET.getClient(dappName);
   client.getCurrencyBalance("eosio.token", "EOS");
 </script>
@@ -128,6 +131,20 @@ client.signText("text");
 - total_resources - Object 资源信息
 - voter_info - Object 投票信息
 
+**示例**
+
+```javascript
+// async/await
+const accountInfo = await client.getAccount();
+
+// Promise
+client.getAccount().then(accountInfo => {
+    console.log(accountInfo);
+}).catch(e => {
+    console.error(e);
+});
+```
+
 ### client.openInApp()
 
 > 是否在钱包中打开
@@ -135,6 +152,20 @@ client.signText("text");
 **返回值**
 
 - res - Boolean
+
+**示例**
+
+```javascript
+// async/await
+const inApp = await client.openInApp()
+
+// Promise
+client.openInApp().then(inApp => {
+    if (!inApp) {
+        console.log("请在morewallet钱包中打开")
+    }
+})
+```
 
 ### client.getAppVersion()
 
