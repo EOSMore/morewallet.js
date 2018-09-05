@@ -97,7 +97,7 @@ client.signText("text");
 - 页面引入script：
 
 ```html
-<script src="https://cdn.more.top/morewallet/1.0.1/morewallet.js.min.js"></script>
+<script src="https://cdn.more.top/morewallet/1.0.5/morewallet.js.min.js"></script>
 ```
 
 - 使用
