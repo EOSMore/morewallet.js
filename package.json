@@ -22,7 +22,12 @@
   },
   "author": "more.top",
   "homepage": "https://more.top",
-  "keywords": ["eos", "more.top", "more", "wallet"],
+  "keywords": [
+    "eos",
+    "more.top",
+    "more",
+    "wallet"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
