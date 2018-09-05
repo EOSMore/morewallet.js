@@ -16,11 +16,13 @@ class Client {
     return new Promise((resolve, reject) => {
       const callbackName = this.genCallbackName("get_account");
       const errorName = this.genErrorName("get_account");
-      window[callbackName] = (account) => {
+      window[ callbackName ] = (accountInfo) => {
         try {
-          account = JSON.parse(account);
-          this.account = account.account_name;
-          resolve(account);
+          accountInfo = JSON.parse(accountInfo);
+          if (!account) {
+            this.account = accountInfo.account_name;
+          }
+          resolve(accountInfo);
         } catch (e) {
           reject(e);
         }
