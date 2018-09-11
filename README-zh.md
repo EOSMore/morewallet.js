@@ -4,11 +4,10 @@
 
 > more wallet dapp js sdk
 
-[中文版](https://github.com/EOSMore/morewallet.js/blob/master/README-zh.md)
+[English](https://github.com/EOSMore/morewallet.js/blob/master/README.md)
+## 示例
 
-## Example
-
-[Complete Example](https://github.com/EOSMore/morewalletjsdemo)
+[完整示例见此](https://github.com/EOSMore/morewalletjsdemo)
 
 ### ES6
 ```javascript
@@ -17,23 +16,23 @@ import mw from 'morewallet.js';
 const dappName = "dappdemo";
 const client = mw.getClient(dappName);
 
-//Get APP Version Number
+//获取APP版本号
 client.getAppVersion().then(version => {
   console.log(version);
 }).catch(error => {
   console.error(error);
 });
 
-//Current Account Information
+//当前账号信息
 client.getAccount();
 
-//If Open in Wallet App
+//是否在钱包APP中打开
 client.openInApp();
 
-//Check If Can Execute A Cretain Action
+//检查是否可执行某个action
 client.checkAction("eosio.token", "transfer");
 
-//Submit Action
+//提交action
 const buyramData = {
   payer: "demouser1111",
   receiver: "demouser1111",
@@ -45,7 +44,7 @@ const authorization = [{
 }];
 client.pushAction("eosio", "buyram", authorization, buyramData);
 
-//Submit Action In Batch
+//批量提交action
 const actions = [{
   account: "eosio",
   name: "buyram",
@@ -76,64 +75,64 @@ const actions = [{
 
 client.pushActions(actions);
 
-//Transfer
+//转账
 client.transfer("eosio.token", "demouser1111", "100.0000 EOS", "hi");
 
-//Get Balance
+//获取余额
 client.getCurrencyBalance("eosio.token", "EOS");
 
-//Data Table
+//数据表信息
 client.getTableRows({
   code: "eosio",
   scope: "eosio",
   table: "global"
 });
 
-//Use Private Key signed Text
+//使用私钥加密文本
 client.signText("text");
 
 ```
 
 ### UMD
 
-- Introduce script to page：
+- 页面引入script：
 
 ```html
 <script src="https://cdn.more.top/morewallet/1.0.5/morewallet.js.min.js"></script>
 ```
 
-- Use
+- 使用
 
 ```html
 <script>
-  var dappName = "dappdemo"; //dapp name, shoud be the name field filled in wallet APP
+  var dappName = "dappdemo"; //dapp 名称，应是在钱包APP填写的name字段
   var client = MOREWALLET.getClient(dappName);
   client.getCurrencyBalance("eosio.token", "EOS");
 </script>
 ```
 
-## Access
+## 接口
 
 ### client.getAccount(account = "")
 
-**Parameter**
+**参数**
 
-- account - the one want to check, no transfer means check current account
+- account - 要查询的账号，不传表示查询当前账号信息
 
-> Check Account Information
+> 查询账号信息
 
-**Return Value**
+**返回值**
 
-- account_name - String account name 
-- core_liquid_balance - String eos balance
-- ram_quota - Integer ram
-- net_weight - Integer bandwidth
+- account_name - String 账户名
+- core_liquid_balance - String eos余额
+- ram_quota - Integer 内存
+- net_weight - Integer 带宽
 - cpu_weight - Integer CPU
-- permissions - Array authority information
-- total_resources - Object resources information
-- voter_info - Object voting information
+- permissions - Array 权限信息
+- total_resources - Object 资源信息
+- voter_info - Object 投票信息
 
-**Example**
+**示例**
 
 ```javascript
 // async/await
@@ -149,13 +148,13 @@ client.getAccount().then(accountInfo => {
 
 ### client.openInApp()
 
-> If Open in Wallet APP
+> 是否在钱包中打开
 
-**Return Value**
+**返回值**
 
 - res - Boolean
 
-**Example**
+**示例**
 
 ```javascript
 // async/await
@@ -164,87 +163,87 @@ const inApp = await client.openInApp()
 // Promise
 client.openInApp().then(inApp => {
     if (!inApp) {
-        console.log("open in morewallet")
+        console.log("请在morewallet钱包中打开")
     }
 })
 ```
 
 ### client.getAppVersion()
 
-> Get APP Version Number
+> 获取APP版本号
 
-**Return Value**
+**返回值**
 
 - version - String
 
 ### client.checkAction(contract, action)
 
-> Check If Have Action Authority
+> 检查是否具备action权限
 
-**Parameter**
+**参数**
 
-- contract - contract account
-- action - action name
+- contract - 合约账号
+- action - action名称
 
-**Return Value**
+**返回值**
 
 - res - Boolean
 
 ### client.getCurrencyBalance(contract, symbol)
 
-> Get Balance of Appointed Token
+> 获取指定代币余额
 
-**Parameter**
+**参数**
 
-- contract - contract account
-- symbol - symbol name
+- contract - 合约账号
+- symbol - symbol名称
 
 ### client.pushAction(contract, action, authorization, data)
 
-> Submit Action
+> 提交action
 
-**Parameter**
+**参数**
 
-- contract - contract account
-- action - action name
-- authorization - authority array
-- data - executive data
+- contract - 合约账号
+- action - action名称
+- authorization - 权限数组
+- data - 执行参数
 
 ### client.pushActions(actions)
 
-> Submit Action in Batch
+> 批量提交action
 
-**Parameter**
+**参数**
 
-- actions - action array
+- actions - action数组
 
 ### client.transfer(contract, to, quantity, memo)
 
-> Transfer
+> 转账
 
-**Parameter**
+**参数**
 
-- contract - token contract
-- to - receiver
-- quantity - transfer amount
-- memo - transfer memo
+- contract - 代币合约
+- to - 接收者
+- quantity - 转账金额
+- memo - 转账memo
 
 ### client.getTableRows(params)
 
-> Get Data Table
+> 获取数据表信息
 
-**Parameter**
+**参数**
 
-- params - check information，refer to`/chain/get_table_rows`
+- params - 查询信息，参考`/chain/get_table_rows`接口
 
 ### client.signText(text)
 
-> Use Private Key Signed Text
+> 使用私钥加密文本
 
-**Parameter**
+**参数**
 
-- text - signed text
+- text - 要加密的文本
 
-**Return Value**
+**返回值**
 
 - signedText - String
